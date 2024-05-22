@@ -25,7 +25,7 @@ The project is an attempt to create the high level C++ Frontend API for MLX Fram
    cd mlx_llm.cpp
    cmake .  
    make 
-   ./MLX_llm_output sample_weights.safetensors
+   ./MLX_llm_output test_nn.safetensors
    ```
    The above command runs the test file for the mlx_llm API. More API for the models is expected in future.
 

@@ -127,12 +127,10 @@ namespace mlx::core::nn{
             for (auto &[k, v] : this->parameters)
             {
                 const std::string sub_name = get_name(prelimiter, k);
-                std::cout << this->name << ":" << sub_name << std::endl;
                 this->named_parameters_dict.insert({sub_name, v});
             }
             for (auto &[k, v] : this->buffers)
             {
-                const std::string sub_name = get_name(prelimiter, k);
                 this->named_parameters_dict.insert({sub_name, v});
             }
             if (!this->submodules.empty())
@@ -142,7 +140,6 @@ namespace mlx::core::nn{
                     for (auto &[l, m] : v.named_parameters_dict)
                     {
                         const std::string sub_name = get_name(prelimiter, l);
-                        std::cout << this->name << ":" << sub_name << std::endl;
                         // std::cout << m << std::endl;
                         if (!(endsWith(l, ".")))
                         {
