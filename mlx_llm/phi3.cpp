@@ -10,7 +10,7 @@ Developed as part of LFX Mentorship Program
 #include <sstream>
 #include <vector>
 #include "mlx/mlx.h"
-#include "common.h"
+#include "common.cpp"
 
 using namespace mlx::core;
 
@@ -94,7 +94,7 @@ public:
     }
     array forward(array x, int offset = 0)
     {
-        return mlx::core::fast::rope(x, dims, traditional, base, scale, offset);
+        return mlx::core::fast::rope(x, dims, traditional, base, scale, offset, device);
     }
 };
 

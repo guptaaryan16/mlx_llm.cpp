@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/guptaaryan16/Desktop/OSS/mlx_llm.cpp/CMakeFiles /Users/guptaaryan16/Desktop/OSS/mlx_llm.cpp//CMakeFiles/progress.marks
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
+	cd /Users/guptaaryan16/Desktop/OSS/mlx_llm.cpp && $(CMAKE_COMMAND) -E cmake_progress_start /Users/guptaaryan16/Desktop/OSS/mlx_llm.cpp/CMakeFiles /Users/guptaaryan16/Desktop/OSS/mlx_llm.cpp/mlx_llm//CMakeFiles/progress.marks
+	cd /Users/guptaaryan16/Desktop/OSS/mlx_llm.cpp && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mlx_llm/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/guptaaryan16/Desktop/OSS/mlx_llm.cpp/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 clean
+	cd /Users/guptaaryan16/Desktop/OSS/mlx_llm.cpp && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mlx_llm/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,68 +103,56 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd /Users/guptaaryan16/Desktop/OSS/mlx_llm.cpp && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mlx_llm/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd /Users/guptaaryan16/Desktop/OSS/mlx_llm.cpp && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mlx_llm/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/guptaaryan16/Desktop/OSS/mlx_llm.cpp && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named MLX_llm
+# Convenience name for target.
+mlx_llm/CMakeFiles/mlx_llm.dir/rule:
+	cd /Users/guptaaryan16/Desktop/OSS/mlx_llm.cpp && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mlx_llm/CMakeFiles/mlx_llm.dir/rule
+.PHONY : mlx_llm/CMakeFiles/mlx_llm.dir/rule
 
-# Build rule for target.
-MLX_llm: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 MLX_llm
-.PHONY : MLX_llm
-
-# fast build rule for target.
-MLX_llm/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MLX_llm.dir/build.make CMakeFiles/MLX_llm.dir/build
-.PHONY : MLX_llm/fast
-
-#=============================================================================
-# Target rules for targets named mlx_llm
-
-# Build rule for target.
-mlx_llm: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mlx_llm
+# Convenience name for target.
+mlx_llm: mlx_llm/CMakeFiles/mlx_llm.dir/rule
 .PHONY : mlx_llm
 
 # fast build rule for target.
 mlx_llm/fast:
-	$(MAKE) $(MAKESILENT) -f mlx_llm/CMakeFiles/mlx_llm.dir/build.make mlx_llm/CMakeFiles/mlx_llm.dir/build
+	cd /Users/guptaaryan16/Desktop/OSS/mlx_llm.cpp && $(MAKE) $(MAKESILENT) -f mlx_llm/CMakeFiles/mlx_llm.dir/build.make mlx_llm/CMakeFiles/mlx_llm.dir/build
 .PHONY : mlx_llm/fast
 
-test_nn.o: test_nn.cpp.o
-.PHONY : test_nn.o
+llm.o: llm.cpp.o
+.PHONY : llm.o
 
 # target to build an object file
-test_nn.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MLX_llm.dir/build.make CMakeFiles/MLX_llm.dir/test_nn.cpp.o
-.PHONY : test_nn.cpp.o
+llm.cpp.o:
+	cd /Users/guptaaryan16/Desktop/OSS/mlx_llm.cpp && $(MAKE) $(MAKESILENT) -f mlx_llm/CMakeFiles/mlx_llm.dir/build.make mlx_llm/CMakeFiles/mlx_llm.dir/llm.cpp.o
+.PHONY : llm.cpp.o
 
-test_nn.i: test_nn.cpp.i
-.PHONY : test_nn.i
+llm.i: llm.cpp.i
+.PHONY : llm.i
 
 # target to preprocess a source file
-test_nn.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MLX_llm.dir/build.make CMakeFiles/MLX_llm.dir/test_nn.cpp.i
-.PHONY : test_nn.cpp.i
+llm.cpp.i:
+	cd /Users/guptaaryan16/Desktop/OSS/mlx_llm.cpp && $(MAKE) $(MAKESILENT) -f mlx_llm/CMakeFiles/mlx_llm.dir/build.make mlx_llm/CMakeFiles/mlx_llm.dir/llm.cpp.i
+.PHONY : llm.cpp.i
 
-test_nn.s: test_nn.cpp.s
-.PHONY : test_nn.s
+llm.s: llm.cpp.s
+.PHONY : llm.s
 
 # target to generate assembly for a file
-test_nn.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MLX_llm.dir/build.make CMakeFiles/MLX_llm.dir/test_nn.cpp.s
-.PHONY : test_nn.cpp.s
+llm.cpp.s:
+	cd /Users/guptaaryan16/Desktop/OSS/mlx_llm.cpp && $(MAKE) $(MAKESILENT) -f mlx_llm/CMakeFiles/mlx_llm.dir/build.make mlx_llm/CMakeFiles/mlx_llm.dir/llm.cpp.s
+.PHONY : llm.cpp.s
 
 # Help Target
 help:
@@ -174,11 +162,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... MLX_llm"
 	@echo "... mlx_llm"
-	@echo "... test_nn.o"
-	@echo "... test_nn.i"
-	@echo "... test_nn.s"
+	@echo "... llm.o"
+	@echo "... llm.i"
+	@echo "... llm.s"
 .PHONY : help
 
 
@@ -190,6 +177,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/guptaaryan16/Desktop/OSS/mlx_llm.cpp && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
