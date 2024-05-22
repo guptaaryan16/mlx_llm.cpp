@@ -1,7 +1,6 @@
 /*
 Author: Aryan Gupta (guptaaryan16)
 Based on https://github.com/ml-explore/mlx-examples/blob/main/llms/mlx_lm/models/phi3.py && HF-MLX community Model
-Developed as part of LFX Mentorship Program
 */
 
 #include <any>

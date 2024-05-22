@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-option(BUILD_SHARED_LIBS "Build extensions as a shared library" ON)
+option(BUILD_SHARED_LIBS "Build mlx_llm as a shared library" ON)
 
 find_package(MLX CONFIG REQUIRED)
 

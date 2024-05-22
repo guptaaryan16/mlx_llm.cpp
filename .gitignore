@@ -1,3 +1,6 @@
 CMakeFiles/
 .vscode/
 build/
+CMakeCache.txt
+cmake_install.cmake
+MLX_llm_output
