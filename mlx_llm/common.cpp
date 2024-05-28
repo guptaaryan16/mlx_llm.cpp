@@ -10,15 +10,16 @@
 #include "utils.cpp"
 
 namespace mlx::core::nn{
+
     class Module
     {
     public:
-        std::string name;
         std::unordered_map<std::string, array> parameters{};
         std::unordered_map<std::string, array> buffers{};
-        std::unordered_map<std::string, Module &> submodules{};
+        std::unordered_map<std::string, std::shared_ptr<Module>> submodules{};
         std::unordered_map<std::string, array &> named_parameters_dict{};
 
+        std::string name;
         StreamOrDevice device = metal::is_available() ? Device::gpu : Device::cpu;
 
         Module(){};
@@ -44,7 +45,7 @@ namespace mlx::core::nn{
             return parameters.at(name);
         }
 
-        array &register_buffer(std::string name, array &&wb)
+        array &register_buffer(std::string name, array &wb)
         {
             // `register_parameter` allows you to register the Weights & Biases
             // used by the NN
@@ -66,9 +67,11 @@ namespace mlx::core::nn{
             if (!(submodules.find(sub_name) != submodules.end()))
             {
                 // Add the parameters of the submodules to the named_parameters_dict
+                //   m.name = sub_name;
+                //   m.named_parameters();
                 submodules.insert({sub_name, m});
-                submodules.at(sub_name).name = sub_name;
-                submodules.at(sub_name).named_parameters(sub_name);
+                submodules.at(sub_name)->name = sub_name;
+                submodules.at(sub_name)->named_parameters();
             }
             else
             {
@@ -77,7 +80,7 @@ namespace mlx::core::nn{
         }
 
         template <typename T>
-        void register_module(std::string sub_name, T &&m)
+        void register_module(std::string sub_name, std::shared_ptr<T> &&m)
         {
             // `register_component` allows you to register the component(in order) as
             // used by the NN
@@ -90,9 +93,11 @@ namespace mlx::core::nn{
             if (!(submodules.find(sub_name) != submodules.end()))
             {
                 // Add the parameters of the submodules to the named_parameters_dict
+                // m.name = sub_name;
+                // m.named_parameters();
                 submodules.insert({sub_name, m});
-                submodules.at(sub_name).name = sub_name;
-                submodules.at(sub_name).named_parameters(sub_name);
+                submodules.at(sub_name)->name = sub_name;
+                submodules.at(sub_name)->named_parameters();
             }
             else
             {
@@ -124,26 +129,26 @@ namespace mlx::core::nn{
 
         void named_parameters(std::string prelimiter = "")
         {
-            for (auto &[k, v] : this->parameters)
+            for (auto &[k, v] : parameters)
             {
-                const std::string sub_name = get_name(prelimiter, k);
-                this->named_parameters_dict.insert({sub_name, v});
+                std::string sub_name = get_name(prelimiter, name, k);
+                named_parameters_dict.insert({sub_name, v});
             }
-            for (auto &[k, v] : this->buffers)
+            for (auto &[k, v] : buffers)
             {
-                this->named_parameters_dict.insert({sub_name, v});
+                std::string sub_name = get_name(prelimiter, name, k);
+                named_parameters_dict.insert({sub_name, v});
             }
-            if (!this->submodules.empty())
+            if (!submodules.empty())
             {
-                for (auto &[k, v] : this->submodules)
+                for (auto &[k, v] : submodules)
                 {
-                    for (auto &[l, m] : v.named_parameters_dict)
+                    for (auto &[l, m] : v->named_parameters_dict)
                     {
-                        const std::string sub_name = get_name(prelimiter, l);
-                        // std::cout << m << std::endl;
-                        if (!(endsWith(l, ".")))
+                        std::string sub_name = get_name(name, l);
+                        if (!(endsWith(sub_name, ".")))
                         {
-                            this->named_parameters_dict.insert({sub_name, m});
+                            named_parameters_dict.insert({sub_name, m});
                         }
                     }
                 }

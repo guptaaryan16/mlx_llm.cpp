@@ -6,26 +6,30 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-option(BUILD_SHARED_LIBS "Build extensions as a shared library" ON)
+option(BUILD_SHARED_LIBS "Build mlx_llm as a shared library" ON)
 
-# ----------------------------- Dependencies -----------------------------
 find_package(MLX CONFIG REQUIRED)
 
-# Add an executable target
-add_executable(MLX_llm test_nn.cpp)
+# ----------------------------- Build Directory -----------------------------
+set(BUILD_DIR ${CMAKE_CURRENT_SOURCE_DIR}/build)  # Specify the build directory
+set(SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/mlx_llm)
 
-# Add include headers
-target_include_directories(
-  MLX_llm PUBLIC ${CMAKE_CURRENT_LIST_DIR}
-)
+# ----------------------------- Build mlx_llm Library -----------------------------
+add_library(mlx_llm STATIC ${SOURCE_DIR}/llm.cpp)
+target_link_libraries(mlx_llm PUBLIC mlx)
+target_include_directories(mlx_llm PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
+# ----------------------------- Build Example -----------------------------
+add_executable(test_nn test_nn.cpp)
+target_link_libraries(test_nn PRIVATE mlx_llm)
 
-add_subdirectory(
-    mlx_llm
-)
-set_target_properties(mlx_llm PROPERTIES LINKER_LANGUAGE CXX)
+# ----------------------------- Output Directory -----------------------------
+set_target_properties(mlx_llm PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${BUILD_DIR})  
+# Set the output directory for the library
 
-
-# Link to mlx
-target_link_libraries(MLX_llm PUBLIC mlx)
-set_target_properties(MLX_llm PROPERTIES OUTPUT_NAME MLX_llm_output)
+# ----------------------------- Install -----------------------------
+install(TARGETS mlx_llm
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin)
+install(FILES ${SOURCE_DIR}/llm.cpp DESTINATION include)
