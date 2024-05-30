@@ -1,4 +1,3 @@
 
-
-#include "test_nn.cpp"
+#include "test.cpp"
 // #include "phi3.cpp" // TO BE COMPLETED

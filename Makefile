@@ -85,6 +85,51 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/opt/homebrew/Cellar/cmake/3.28.2/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/opt/homebrew/Cellar/cmake/3.28.2/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/opt/homebrew/Cellar/cmake/3.28.2/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/opt/homebrew/Cellar/cmake/3.28.2/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/opt/homebrew/Cellar/cmake/3.28.2/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/opt/homebrew/Cellar/cmake/3.28.2/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/guptaaryan16/Desktop/OSS/mlx_llm.cpp/CMakeFiles /Users/guptaaryan16/Desktop/OSS/mlx_llm.cpp//CMakeFiles/progress.marks
@@ -117,19 +162,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named MLX_llm
-
-# Build rule for target.
-MLX_llm: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 MLX_llm
-.PHONY : MLX_llm
-
-# fast build rule for target.
-MLX_llm/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MLX_llm.dir/build.make CMakeFiles/MLX_llm.dir/build
-.PHONY : MLX_llm/fast
-
-#=============================================================================
 # Target rules for targets named mlx_llm
 
 # Build rule for target.
@@ -139,15 +171,52 @@ mlx_llm: cmake_check_build_system
 
 # fast build rule for target.
 mlx_llm/fast:
-	$(MAKE) $(MAKESILENT) -f mlx_llm/CMakeFiles/mlx_llm.dir/build.make mlx_llm/CMakeFiles/mlx_llm.dir/build
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlx_llm.dir/build.make CMakeFiles/mlx_llm.dir/build
 .PHONY : mlx_llm/fast
+
+#=============================================================================
+# Target rules for targets named test_nn
+
+# Build rule for target.
+test_nn: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_nn
+.PHONY : test_nn
+
+# fast build rule for target.
+test_nn/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_nn.dir/build.make CMakeFiles/test_nn.dir/build
+.PHONY : test_nn/fast
+
+mlx_llm/llm.o: mlx_llm/llm.cpp.o
+.PHONY : mlx_llm/llm.o
+
+# target to build an object file
+mlx_llm/llm.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlx_llm.dir/build.make CMakeFiles/mlx_llm.dir/mlx_llm/llm.cpp.o
+.PHONY : mlx_llm/llm.cpp.o
+
+mlx_llm/llm.i: mlx_llm/llm.cpp.i
+.PHONY : mlx_llm/llm.i
+
+# target to preprocess a source file
+mlx_llm/llm.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlx_llm.dir/build.make CMakeFiles/mlx_llm.dir/mlx_llm/llm.cpp.i
+.PHONY : mlx_llm/llm.cpp.i
+
+mlx_llm/llm.s: mlx_llm/llm.cpp.s
+.PHONY : mlx_llm/llm.s
+
+# target to generate assembly for a file
+mlx_llm/llm.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlx_llm.dir/build.make CMakeFiles/mlx_llm.dir/mlx_llm/llm.cpp.s
+.PHONY : mlx_llm/llm.cpp.s
 
 test_nn.o: test_nn.cpp.o
 .PHONY : test_nn.o
 
 # target to build an object file
 test_nn.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MLX_llm.dir/build.make CMakeFiles/MLX_llm.dir/test_nn.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_nn.dir/build.make CMakeFiles/test_nn.dir/test_nn.cpp.o
 .PHONY : test_nn.cpp.o
 
 test_nn.i: test_nn.cpp.i
@@ -155,7 +224,7 @@ test_nn.i: test_nn.cpp.i
 
 # target to preprocess a source file
 test_nn.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MLX_llm.dir/build.make CMakeFiles/MLX_llm.dir/test_nn.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_nn.dir/build.make CMakeFiles/test_nn.dir/test_nn.cpp.i
 .PHONY : test_nn.cpp.i
 
 test_nn.s: test_nn.cpp.s
@@ -163,7 +232,7 @@ test_nn.s: test_nn.cpp.s
 
 # target to generate assembly for a file
 test_nn.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MLX_llm.dir/build.make CMakeFiles/MLX_llm.dir/test_nn.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_nn.dir/build.make CMakeFiles/test_nn.dir/test_nn.cpp.s
 .PHONY : test_nn.cpp.s
 
 # Help Target
@@ -173,9 +242,16 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... MLX_llm"
 	@echo "... mlx_llm"
+	@echo "... test_nn"
+	@echo "... mlx_llm/llm.o"
+	@echo "... mlx_llm/llm.i"
+	@echo "... mlx_llm/llm.s"
 	@echo "... test_nn.o"
 	@echo "... test_nn.i"
 	@echo "... test_nn.s"

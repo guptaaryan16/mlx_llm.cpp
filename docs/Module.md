@@ -51,3 +51,7 @@ Similarly we can register non-trainiable methods using  `Module::register_buffer
 Further any new submodule will be registered as `Module::register_submodule` method.
 
 Now you can create a `Module::forward` method that can take in arguments like an `mlx::core::array` and give an output.
+
+
+#### Creating Custom Modules:
+For custom modules, due to the advantages in using `std::shared_ptr` as it is quite similar to python and can be really easy to implement by any programmer, we tend to use the API 
