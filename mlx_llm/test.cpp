@@ -8,8 +8,9 @@
 #include "utils.cpp"
 #include "common.cpp"
 
-using namespace mlx::core;
-class LinearLayer : public nn::Module
+namespace mlx::core::nn{
+
+class LinearLayer : public Module
 {
 public:
     int input_dim, output_dim;
@@ -46,7 +47,7 @@ public:
     }
 };
 
-class LinearOnesLayer : public nn::Module
+class LinearOnesLayer : public Module
 {
 public:
     int input_dim, output_dim;
@@ -83,7 +84,7 @@ public:
     }
 };
 
-class CustomLayer : public nn::Module
+class CustomLayer : public Module
 {
 public:
     int input_dim, output_dim;
@@ -123,7 +124,7 @@ public:
         return l1->forward(y);
     }
 };
-class TestModel : public nn::Module
+class TestModel : public Module
 {
 public:
     std::shared_ptr<LinearLayer> fc1;
@@ -156,3 +157,4 @@ public:
         return y;
     }
 };
+} // namespace mlx::core::nn

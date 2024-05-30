@@ -27,7 +27,7 @@ int main(int argc, char* argv[]) {
   }
 
   array input = random::uniform({1, 784});
-  TestModel test_model = TestModel();
+  mlx::core::nn::TestModel test_model = mlx::core::nn::TestModel();
   auto res = test_model.forward(input);
   std::cout << res << "\n" << res.shape();
   test_model.print_parameters();
