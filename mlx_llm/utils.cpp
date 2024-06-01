@@ -5,6 +5,8 @@
 #include <string>
 #include <sstream>
 
+
+namespace mlx::core::nn {
 // get_name function for data resolution
 template <typename T>
 std::string get_name(std::string prelimiter, const T value)
@@ -42,3 +44,4 @@ bool ends_with(const std::string &str, const std::string &suffix)
         return false;
     return str.substr(str.size() - suffix.size()) == suffix;
 }
+} // namespace mlx::core::nn
