@@ -38,7 +38,7 @@ std::string get_name(std::string &prelimiter, const T value1, const T value2)
     return oss.str();
 }
 
-bool ends_with(const std::string &str, const std::string &suffix)
+bool mlx_var_ends_with(const std::string &str, const std::string &suffix)
 {
     if (suffix.size() > str.size())
         return false;
