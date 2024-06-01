@@ -146,7 +146,7 @@ namespace mlx::core::nn{
                     for (auto &[l, m] : v->named_parameters_dict)
                     {
                         std::string sub_name = get_name(name, l);
-                        if (!(endsWith(sub_name, ".")))
+                        if (!(ends_with(sub_name, ".")))
                         {
                             named_parameters_dict.insert({sub_name, m});
                         }
@@ -195,12 +195,12 @@ namespace mlx::core::nn{
             const std::string &file,
             StreamOrDevice s = metal::is_available() ? Device::gpu : Device::cpu)
         {
-            if (endsWith(file, ".safetensors"))
+            if (ends_with(file, ".safetensors"))
             {
                 std::cout << "Loading model from .safetensors file...\n";
                 load_from_safetensors(file, s);
             }
-            else if (endsWith(file, ".gguf"))
+            else if (ends_with(file, ".gguf"))
             {
                 load_from_gguf(file, s);
                 std::cout << "Loading model from .gguf file...\n";
