@@ -52,3 +52,5 @@ The above code is licensed under MIT LICENSE.
 This API is developed as part of LFX mentorship program, which meant integrating the MLX framework with the WasmEdge Runtime Environment. Thus, I really would like to thank my mentors and the LFX team for supporting the development of the project.
 
 Also I would like to thank the MLX maintainers and community for the support.
+
+Read more about my experience and the blog post here:
