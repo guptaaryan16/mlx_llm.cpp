@@ -8,7 +8,7 @@
 #include <vector>
 #include "mlx/mlx.h"
 #include "utils.cpp"
-
+#include "string"
 namespace mlx::core::nn{
 
     class Module
@@ -43,6 +43,12 @@ namespace mlx::core::nn{
             // used by the NN
             parameters.insert({name, wb});
             return parameters.at(name);
+        }
+        bool static hasEnding(const std::string &str, const std::string &suffix)
+        {
+            if (suffix.size() > str.size())
+                return false;
+            return str.substr(str.size() - suffix.size()) == suffix;
         }
 
         array &register_buffer(std::string name, array &wb)
@@ -146,7 +152,7 @@ namespace mlx::core::nn{
                     for (auto &[l, m] : v->named_parameters_dict)
                     {
                         std::string sub_name = get_name(name, l);
-                        if (!(mlx_var_ends_with(sub_name, ".")))
+                        if (!(hasEnding(sub_name, ".")))
                         {
                             named_parameters_dict.insert({sub_name, m});
                         }
@@ -195,12 +201,12 @@ namespace mlx::core::nn{
             const std::string &file,
             StreamOrDevice s = metal::is_available() ? Device::gpu : Device::cpu)
         {
-            if (mlx_var_ends_with(file, ".safetensors"))
+            if (hasEnding(file, ".safetensors"))
             {
                 std::cout << "Loading model from .safetensors file...\n";
                 load_from_safetensors(file, s);
             }
-            else if (mlx_var_ends_with(file, ".gguf"))
+            else if (hasEnding(file, ".gguf"))
             {
                 load_from_gguf(file, s);
                 std::cout << "Loading model from .gguf file...\n";
